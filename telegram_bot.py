@@ -35,7 +35,7 @@ def download_video(file_id):
     return get_file(file_source)
 
 def get_video_file_source(file_id):
-    url = f'https://api.telegram.org/bot6823760649:AAGPR6MCvHEv-QRimKjrz3K_DBSt5EpLqi0/getFile'
+    url = f'https://api.telegram.org/bot"token"/getFile'
     params = {'file_id': file_id}
     response = requests.get(url, params=params)
     
@@ -47,7 +47,7 @@ def get_video_file_source(file_id):
         raise Exception(f"Error getting file source: {error_message}")
 
 def get_file(file_source):
-    url = 'https://api.telegram.org/file/bot' + '6823760649:AAGPR6MCvHEv-QRimKjrz3K_DBSt5EpLqi0' + '/' + file_source
+    url = 'https://api.telegram.org/file/bot' + "token" + '/' + file_source
     r = requests.get(url)
     filename = 'Video.mp4'
     try:
@@ -71,7 +71,7 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('6823760649:AAGPR6MCvHEv-QRimKjrz3K_DBSt5EpLqi0').build()
+    application = ApplicationBuilder().token("token").build()
     
     start_handler = CommandHandler('start', start)
     message_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), message)
